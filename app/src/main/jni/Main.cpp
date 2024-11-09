@@ -16,7 +16,12 @@ void native_onSendConfig(JNIEnv *env, jobject thiz, jstring s, jstring v) {
     const char *config = env->GetStringUTFChars(s, 0);
     const char *value = env->GetStringUTFChars(v, 0);
 
-    Config[config] = (u_long) strtoul(value, 0, 0);
+    if (config != nullptr && value != nullptr) {
+        Config[config] = (u_long) strtoul(value, 0, 0);
+    }
+
+    env->ReleaseStringUTFChars(s, config);
+    env->ReleaseStringUTFChars(v, value);
 }
 
 jclass (*orig_FindClass)(JNIEnv *env, const char *name);

@@ -18,7 +18,6 @@ public class Launcher {
     public static void Init(Object object) {
         Context m_Context = (Context) object;
         Activity m_Activity = (Activity) object;
-        Init(m_Context);
         if (Build.VERSION.SDK_INT >= 23) {
             if (!Settings.canDrawOverlays(m_Context)) {
                 Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION, Uri.parse("package:" + m_Context.getPackageName()));
